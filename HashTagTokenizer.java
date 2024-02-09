@@ -1,5 +1,4 @@
 
-
 public class HashTagTokenizer {
 
 	public static void main(String[] args) {
@@ -13,14 +12,21 @@ public class HashTagTokenizer {
 		String[] dictionary = new String[3000];
 
 		In in = new In(fileName);
-
-		// Your code here
+		for(int i = 0; i < dictionary.length; i++){
+			String str = in.readLine();
+			dictionary[i] = str;
+		}
 
 		return dictionary;
 	}
 
 	public static boolean existInDictionary(String word, String []dictionary) {
-		// Your code here
+		for(int i = 0; i < dictionary.length; i++){
+			if(dictionary[i].equals(word)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void breakHashTag(String hashtag, String[] dictionary) {
@@ -29,11 +35,20 @@ public class HashTagTokenizer {
         if (hashtag.isEmpty()) {
             return;
         }
- 
+		
         int N = hashtag.length();
+		hashtag = hashtag.toLowerCase();
 
         for (int i = 1; i <= N; i++) {
-		
+			if(existInDictionary(hashtag.substring(0, i), dictionary)){
+				System.out.println(hashtag.substring(0,i));
+				if(i != N){
+					breakHashTag(hashtag.substring(i, N), dictionary);
+				}
+				break;
+				
+			}
+			
         }
     }
 
