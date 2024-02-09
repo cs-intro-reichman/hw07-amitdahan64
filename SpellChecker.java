@@ -25,11 +25,14 @@ public class SpellChecker {
 		int a = word1.length();
 		int b = word2.length();
 		if(b==0){return a;}
+		// redundant else
 		else{
 			if(a==0){return b;}
+			// redundant else
 			else{
 				if(word1.charAt(0) == word2.charAt(0)){
 				return levenshtein(tail(word1), tail(word2));}
+				// redundant else
 				else{
 					int i = levenshtein(tail(word1), word2);
 					int j = levenshtein(word1, tail(word2));
@@ -39,6 +42,11 @@ public class SpellChecker {
 			
 		}
 	}
+	/* redundant else means that when you do return, the function stops,
+ 	so the only way to continue the function run is if the condition was false wich is what else stands for.
+  	so there is no need for the else.	
+   	when you see so many if-else inside if-else, this should be a red flag that it could be done better.
+   	*/
 
 	}
 
